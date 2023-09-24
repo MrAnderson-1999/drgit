@@ -6,7 +6,7 @@ api_key = os.environ.get("OPENAI_API_KEY")
 
 def get_text():
     # Specify the path to the file you want to read
-    file_path = 'Untitled-1.json'
+    file_path = 'template.json'
 
     # Open the file in read mode ('r')
     try:
