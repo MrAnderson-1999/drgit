@@ -1,77 +1,81 @@
 # drgit
 ## Documentation automation for everyone
 
+Welcome to the drgit repository! This project aims to provide automated documentation generation for your codebase. In this README, we'll explain the purpose of the key files within this repository, namely `gpt.py` and `template.json`, and how they contribute to the project's functionality.
+
 ### Documentation Comments Generator
-This repository contains a Python script that can be used to add documentation comments to a whole GitHub repository. The script uses the ChimeraGPT API to generate the documentation comments.
+
+The `gpt.py` file serves as the core of the Documentation Comments Generator. It leverages OpenAI's GPT-3 model to generate informative comments for your code. Here's a breakdown of its main components:
+
+Main keywords: GPT-3, Documentation Generator, code comments, gpt.py
+Main topic name: Automated Code Documentation Generation
+
+1. `api_key`: This variable stores your OpenAI API key, which is required for making requests to the GPT-3 model.
+
+2. `get_text()`: This function reads the content of the `template.json` file, which is crucial for providing context to the GPT-3 model. It reads the file and returns its content as text.
+
+3. `send_req()`: This function sends a request to the GPT-3 model, using the content from `template.json` as a prompt. It specifies parameters like the model to use and the maximum number of tokens for the response. The response from the model is then returned.
+
+### `template.json`
+
+The `template.json` file is essential for providing context to the GPT-3 model. It contains the structure and context for generating code comments. Here's what you need to know:
+
+Main keywords: template.json, context, code comments, GPT-3
+Main topic name: Contextual Code Comment Generation
+
+- `"main request"`: This key specifies the primary purpose of the code comments generated. It helps the GPT-3 model understand the desired format and content.
+
+- `"file"`: This section includes information about the file to be commented on, such as its internal path, the format for explained comments, and reformatting rules. The `"file_content"` field is where the actual code to be documented should be placed.
+
+- `"context"`: This section allows you to provide additional context or a project description to guide the comment generation process.
 
 ### Features
-- Adds documentation comments to all the lines of code in a repository.
-- Uses the ChimeraGPT API to generate documentation comments that are specific to the code they are commenting on.
-- Easy to use: just pass the repository URL to the script, and it will do the rest.
+
+- Automated generation of code comments for improved code documentation.
+- Integration with the powerful GPT-3 model for context-aware comments.
 
 ### Requirements
-- Python 3
-- ChimeraGPT API
+
+- Python 3.x
+- OpenAI API Key
 
 ### Installation
-`pip install chimeragpt-api`
 
-### Usage
-`python main.py https://github.com/<username>/<repo>`
-This will add documentation comments to all the files in the repository. You can then push the changes to the repository to make the documentation available to others.
+1. Clone this repository to your local machine.
 
-Example
--
+```
+git clone https://github.com/yourusername/drgit.git
+```
+Set up your OpenAI API Key as an environment variable.
+```
+export OPENAI_API_KEY=your-api-key
+```
+Install the required dependencies.
+```
+pip install requests
+```
+ ### Usage
+To use the Documentation Comments Generator, follow these steps:
+
+Ensure that you have set up your OpenAI API Key as an environment variable.
+
+Place the code you want to generate comments for in the template.json file under "file_content".
+
+Run the gpt.py script to generate comments.
+
+### Example
+
 The following is an example of the output of the script:
 ```
-/* (Automated GPT comment): Includes the system header for ioctl. */
-#include <sys/ioctl.h>
-
-/* (Automated GPT comment): Includes the vdrm_ioctl header. */
-#include "vdrm_ioctl.h"
-
-/* (Automated GPT comment): Defines the buffer size. */
-#define BUFFER_SIZE 16384+sizeof(struct ioctl_data) //2^14
-
-/* (Automated GPT comment): The path to the vtux device. */
-const char path[] = "/dev/vtux";
-
-int main() {
-	/* (Automated GPT comment): Opens the vtux device. */
-	int fd = open(path, O_RDWR);
-	if (fd < 0) {
-		/* (Automated GPT comment): Failed to open the vtux device. */
-		printf("failed to open vtux controller, what: %s\n", strerror(-fd));
-		return fd;
-	}
-
-	/* (Automated GPT comment): Allocates a buffer for the ioctl data. */
-	char buf[BUFFER_SIZE];
-
-	/* (Automated GPT comment): Clears the buffer. */
-	memset(buf, 0, BUFFER_SIZE);
-
-	/* (Automated GPT comment): Casts the buffer to a struct ioctl_data pointer. */
-	struct ioctl_data *ioctl = (struct ioctl_data*) buf;
-
-	/* (Automated GPT comment): A loop that reads from the vtux device until the end of file. */
-	ssize_t byteRead = 0;
-
+python gpt.py
 ```
-As you can see, the script adds documentation comments to all the lines of code that do not already have comments. The documentation comments are generated by the ChimeraGPT API and are specific to the code they are commenting on.
 
-License
--
-This project is licensed under the MIT License. See the LICENSE file for more details.
+### License
 
-Contributing
--
-Contributions are welcome! Please open an issue or submit a pull request if you have any improvements or bugfixes.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-Contact
-If you have any questions, please feel free to contact me at [email protected].
+### Contributing
 
-I hope this is helpful!
+We welcome contributions! If you'd like to contribute to this project, please follow our contribution guidelines.
 
-
-
+Thank you for using drgit! We hope this README helps you understand how to utilize the gpt.py and template.json files for automated code documentation generation.
