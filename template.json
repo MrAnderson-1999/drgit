@@ -1,0 +1,11 @@
+{
+  "main request": "Explain the specific purpose of each code block from the following file. Output the reformatted file",
+  "file" : {
+    "file_internal_path": "/<file-name>",
+    "explained_comment_format" : "Auto-GPT:<explanation>",
+    "important_reformatting_rules" : "dont remove any text from the original file",
+    "file_content": ""
+  "context" : {
+    "project_decription" : "",
+  }
+}
